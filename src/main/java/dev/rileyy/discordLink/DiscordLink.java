@@ -20,7 +20,6 @@ public class DiscordLink implements ModInitializer {
     @Override
     public void onInitialize() {
         Util.LOGGER.info("Started");
-        ConfigManager.readConfig();
 
         if (Util.CONFIG.getJWT_SIGNING_KEY().isEmpty()) {
             final SecretKey key = Jwts.SIG.HS256.key().build();
@@ -30,7 +29,9 @@ public class DiscordLink implements ModInitializer {
         final JwtCredential cred = new JwtCredential("default-client");
         Util.LOGGER.info("Testing JWT: {}", cred.makeJwt());
 
-        rpcServer = new RPCServer(Util.CONFIG.getSERVER_URL(), Integer.parseInt(Util.CONFIG.getPORT()));
+        rpcServer = new RPCServer(
+                Util.CONFIG.getSERVER_URL(),
+                Integer.parseInt(Util.CONFIG.getPORT()), "","");
 
         registerRPCServer();
     }

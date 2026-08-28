@@ -35,6 +35,7 @@ public class DiscordLinkConfig {
         this.PORT = PORT;
     }
 
+
     public String JWT_SIGNING_KEY = "";
 
     public String BEARER_TYPE = "Bearer";

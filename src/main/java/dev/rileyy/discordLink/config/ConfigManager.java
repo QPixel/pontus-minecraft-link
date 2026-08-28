@@ -22,7 +22,10 @@ public class ConfigManager {
     public static DiscordLinkConfig getConfig() {
        return currentConfig;
     }
-
+    public static DiscordLinkConfig readAndGetConfig() {
+        readConfig();
+        return getConfig();
+    }
 
     public static void readConfig() {
         if (!configFile.exists()) {
