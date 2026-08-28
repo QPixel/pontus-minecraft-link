@@ -1,6 +1,7 @@
 plugins {
     id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT'
     id 'com.google.protobuf' version '0.10.0'
+
     id 'maven-publish'
 }
 
@@ -59,6 +60,15 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    maven { url 'https://maven.wispforest.io' }
+    maven { url 'https://jitpack.io' }
+    maven {
+        name 'luck-repo'
+        url 'https://repo.lucko.me/'
+        content {
+            includeModule 'me.lucko', 'spark-api'
+        }
+    }
 }
 
 dependencies {
@@ -71,6 +81,19 @@ dependencies {
     runtimeOnly 'io.grpc:grpc-netty-shaded:1.83.1'
     implementation 'io.grpc:grpc-protobuf:1.83.1'
     implementation 'io.grpc:grpc-stub:1.83.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.13.0'
+
+//    implementation "io.wispforest:owo-lib:${project.owo_version}"
+//    // only if you plan to use owo-config
+//    annotationProcessor "io.wispforest:owo-lib:${project.owo_version}"
+//
+//    // include this if you don't want force your users to install owo
+//    // sentinel will warn them and give the option to download it automatically
+//    include "io.wispforest:owo-sentinel:${project.owo_version}"
+
+    compileOnly 'me.lucko:spark-api:0.1-SNAPSHOT'
 }
 
 processResources {
