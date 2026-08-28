@@ -8,6 +8,7 @@ import minecraft.MinecraftServerServiceGrpc;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 
 public class MinecraftImpl extends MinecraftServerServiceGrpc.MinecraftServerServiceImplBase {
@@ -59,4 +60,18 @@ public class MinecraftImpl extends MinecraftServerServiceGrpc.MinecraftServerSer
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
+
+    @Override
+    public void getWhitelist(Minecraft.GetWhitelistRequest request, StreamObserver<Minecraft.GetWhitelistResponse> responseObserver) {
+        boolean enabled = whitelistProvider.getWhitelistStatus();
+        String[] players = whitelistProvider.getWhitelistedPlayers();
+        Minecraft.GetWhitelistResponse.Builder builder = Minecraft.GetWhitelistResponse.newBuilder();
+        if (request.hasEnabled()) {
+            builder.setEnabled(enabled);
+        }
+        if (request.hasPlayer()) {
+
+        }
+    }
+
 }

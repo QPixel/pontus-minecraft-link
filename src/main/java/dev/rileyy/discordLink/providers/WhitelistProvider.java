@@ -18,9 +18,9 @@ public class WhitelistProvider {
         this.whitelist = server.getPlayerList().getWhiteList();
     }
 
-    public String[] getWhitelistedPlayers() {
-        return this.server.getPlayerList().getWhiteList().getUserList();
-    }
+    public String[] getWhitelistedPlayers() { return this.whitelist.getUserList(); }
+
+    public Boolean getWhitelistStatus() { return this.server.isUsingWhitelist(); }
 
     public boolean setWhitelistedPlayer(String username) {
         Optional<GameProfile> profile = server.services().profileResolver().fetchByName(username);
