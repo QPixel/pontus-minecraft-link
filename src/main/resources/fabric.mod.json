@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-link",
+  "version": "${version}",
+  "name": "discord-link",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/discord-link/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-datagen": [
+      "dev.rileyy.discordLink.client.DiscordLinkDataGenerator"
+    ],
+    "main": [
+      "dev.rileyy.discordLink.DiscordLink"
+    ]
+  },
+  "mixins": [
+    "discord-link.mixins.json",
+    {
+      "config": "discord-link.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
